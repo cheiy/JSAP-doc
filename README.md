@@ -18,9 +18,11 @@ Database – mysql
 Two main types of users
 - Patient
 - Doctor
+
 Super User
 - ADMIN
 
 ### User Authentication
 The Frontend was done in HTML and CSS
+
 The Backend was done in Python Flask
