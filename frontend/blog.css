@@ -1,0 +1,19 @@
+body{
+    margin: 10px;
+    padding: 10px;
+    display: block;
+}
+h2{
+    color: rgb(2, 61, 61);
+    text-align: justify;
+}
+.header{
+    line-height: 8px;
+}
+.header h1{
+    color: blue;
+}
+.lower-text{
+    color: brown;
+    font-style: italic;
+}

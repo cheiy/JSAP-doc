@@ -20,34 +20,44 @@
                 
                 <div class="input-box">
                     <div class="input-field">
-                        <input type="text" placeholder="full name" required>
+                        <input type="text" id="name" placeholder="Full Name" onkeyup="validateName">
+                        <span id="nameError">Name is required</span>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Age" required>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <div class="input-field">
-                        <input type="text" placeholder="Email" required>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="phone number" required>
+                        <input type="text" id="age" placeholder="Age" required>
+                        <span id="ageError"></span>
                     </div>
                 </div>
                 <div class="input-box">
                     <div class="input-field">
-                        <input type="text" placeholder="contact person" required>
+                        <input type="text" id="email" placeholder="Email" required>
+                        <span id="emailError"></span>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="physical address" required>
+                        <input type="number" id="Phone-Number" placeholder="phone number" required>
+                        <span id="Phone-NumberError"></span>
                     </div>
                 </div>
                 <div class="input-box">
                     <div class="input-field">
-                        <input type="text" placeholder="Ailment" required>
+                        <input type="text" id="contact" placeholder="contact person" required>
+                        <span id="contactError"></span>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Appointment Date" required>
+                        <input type="text" id="address" placeholder="physical address" required>
+                        <span id="addressError"></span>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <select id="Ailment">
+                        <option value="Ailment">Select Ailment</option>
+                        <option value="Malaria">Malaria</option>
+                        <option value="TB">TB</option>
+                        <option value="Cholera">cholera</option>
+                    </select>
+                    <div class="input-field">
+                        <input type="date" placeholder="Appointment Date" required>
+                        <span id="dateError"></span>
                     </div>
                 </div>
                 <span class="gender-title">Gender</span>
@@ -62,5 +72,6 @@
                 <button class="btn" style="background-color: rgb(95, 88, 102); border-radius: 10px; width: fit-content; color: rgba(26, 23, 23, 0.904);padding: 4px;">Book</button>
             </forms>
         </div>
+        <script src="appointment.js"></script>
     </body>
 </html>
