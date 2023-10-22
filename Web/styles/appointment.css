@@ -1,0 +1,135 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+    padding: 1px;
+}
+.box{
+    height: 400px;
+    width: 100vw;
+    position: relative; 
+    display: flex;
+    flex-wrap: wrap;
+}
+button{
+    margin-left: 1em;
+    /* margin: 0 auto; */
+    padding: 5px 10px;
+    background-color: rgb(1, 1, 40);
+    color: white;
+    height: 35px;
+    /* width: 80%; */
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button:hover{
+    background-color: rgba(1, 1, 40, .3);
+    color: white;
+    font-weight: 700;
+}
+
+input{
+    /* background-color: rgba(1, 1, 1, .7); */
+    height: 35px;
+    width: 500px;
+    margin: 5px;
+    /* color: white; */
+    font-size: 1em;
+    margin: 0 auto;
+}
+.banner{
+    position: relative;
+}
+nav{
+    display: flex;
+    height: 50px;
+    background-color: rgb(1, 1, 40);
+    /* position: absolute; */
+    top: 0;
+}
+nav ul{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    justify-content: end;
+    /* text-align: right; */
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+}
+nav li{
+    margin: 1em;
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.card{
+    height: 100%;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 10px auto; 
+    
+}
+.card img{
+    height: 350px;
+    width: 300px;
+    object-fit: cover;
+    object-position: top;
+}
+.cardv{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.name{
+    font-size: 16px;
+    font-weight: 800;
+}
+.job{
+    font-size: 14px;
+    /* font-weight: 800;  */
+}
+.list{
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+}
+.columns{
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    text-align: left;
+}
+.columns ul{
+    width: 50%;
+}
+.description{
+    /* background-color: blue; */
+    width: 500px;
+    margin: 10px auto;
+}
+form{
+    background-color: rgba(1, 1, 40, .3);
+    width: 100%;
+    max-width: 600px;
+    padding: 2px;
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+h2{
+    text-align: center;
+}

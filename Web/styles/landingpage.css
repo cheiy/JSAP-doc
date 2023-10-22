@@ -1,0 +1,151 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+    padding: 1px;
+}
+.box{
+    height: 400px;
+    width: 100vw;
+    position: relative; 
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.overlay{
+    background-color: rgba(1, 1, 40, .7);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    align-items: center;
+    color: white;
+}
+.box img{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
+.content{
+    width: 80%;
+    margin: 0, auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    margin-top: 1em;
+    padding: 10px 20px;
+    background-color: rgb(1, 1, 40);
+    color: white;
+    height: 35px;
+    width: 200px;
+    border-radius: 5px;
+    font-size: 1em;
+    display: block;
+    margin: 0 auto;
+}
+.description button{
+    margin-top: 2px;
+    padding: 3px 4px;
+    height: 30px;
+    width: 150px;
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+
+}
+button:hover{
+    background-color: rgba(1, 1, 40, .3);
+    color: white;
+    font-weight: 700;
+}
+.banner{
+    position: relative;
+}
+nav{
+    display: flex;
+    height: 50px;
+    background-color: rgb(1, 1, 40);
+    top: 0;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+}
+li{
+    margin: 1em;
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+/* Categories */
+.categories{
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    margin-bottom: 2em;
+}
+.categories h2, .med-icons span{
+    margin: 0.5em;
+}
+.med-icons span{
+    height: 100px;
+    border-right: 2px solid black;
+}
+.med-icons span:last-child{
+    border: none;
+}
+.doctors{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card{
+    height: 250px;
+    width: 200px;
+    background-color: rgba(1, 1, 40, .3);
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 10px auto; 
+    text-align: center;
+}
+
+.card img{
+    box-sizing: content-box;
+    height: 70%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+.name{
+    font-size: 16px;
+    font-weight: 800;
+}
+.job{
+    font-size: 14px;
+}
+.list{
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+}
