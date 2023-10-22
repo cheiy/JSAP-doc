@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <title>Doctors</title>
+    <link rel="stylesheet" href="../styles/appointment.css">
+    <!-- Flatpickr for calender customization -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="banner">
+                <nav>
+                    <ul>
+                        <a href="../index.html"><li>Home</li></a>
+                        <a href="./landingpage.html"><li>Find Doctors</li></a>
+                        <a href="./appointment.html"><li>Appointment</li></a>
+                        <a href="./results.html"><li>Profile </li></a>
+                        <a href="./login.html"><li>Blogs</li></a>
+                    </ul>
+                </nav>
+            </div>
+        </header> 
+        <section class="doctors">
+            
+            <div class="card">
+                <div class="cardv">
+                    <div>
+                        <img src="https://images.pexels.com/photos/12495583/pexels-photo-12495583.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                    </div>
+                    <div class="description">
+                        <p>Name: Victoria Zuhura</p>
+                        <p>Role: Neurologist</p>
+                        <p>Description: specializes in the diagnosis and treatment of disorders of the nervous system:</p>
+                        <div class="columns">
+                            <ul>
+                                <li>Alzheimer's disease</li>
+                                <li>Amyotrophic lateral sclerosis (ALS)</li>
+                                <li>Brain tumors</li>
+                                <li>Cerebral palsy</li>
+                                <li>Concussion</li>
+                            </ul>
+                            <ul>
+                                <li>Epilepsy</li>
+                                <li>Huntington's disease</li>
+                                <li>Multiple sclerosis (MS)</li>
+                                <li>Parkinson's disease</li>
+                                <li>Traumatic brain injury</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>  
+        <section>
+            <h2>Select Session</h2>
+            <form action="">
+                <label for="calender">
+                    <input type="date" class="flatpickr" placeholder="select a date">
+                </label>
+                <button>Submit</button>
+            </form>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+    <script>
+        disableDates = (date) => {
+            // return true to disable
+            
+            return (date.getDay() === 0 || date.getDay() === 6);
+        }
+        flatpickr(".flatpickr", {
+            enableTime: true,
+            // dateFormat: "Y-m-d H:i",
+            disable: [disableDates],
+            "locale": {
+            "firstDayOfWeek": 1 // start week on Monday
+            
+        }
+        });
+      </script>
+</body>
+</html>
+
+
