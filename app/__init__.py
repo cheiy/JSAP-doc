@@ -5,6 +5,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_bootstrap import Bootstrap
 
 # local code imports
 from config import app_config
@@ -39,5 +40,11 @@ def create_app(config_name):
     #BluePrints Registration
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+
+    from .auth import auth as auth_bp
+    app.register_blueprint(auth_bp)
+    
+    Bootstrap(app)
+    
 
     return app

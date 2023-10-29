@@ -10,7 +10,7 @@ def homepage():
     """
     Render the homepage template on the / route
     """
-    return render_template('home/landingpage.html', title="Welcome")
+    return render_template('home/index.html', title="Welcome")
 @home.route('/registration.html')
 def registration():
     """
@@ -31,4 +31,11 @@ def login():
     Render the login form
     """
     return render_template('home/login.html', title="Login")
+
+@home.route('/landingpage.html')
+def landing():
+    """
+    Render the landing page
+    """
+    return render_template('home/landingpage.html')
 
