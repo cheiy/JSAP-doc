@@ -4,6 +4,7 @@ from flask import render_template
 from flask_login import login_required
 
 from . import home
+from ..auth.forms import LoginForm
 
 @home.route('/')
 def homepage():
@@ -11,31 +12,19 @@ def homepage():
     Render the homepage template on the / route
     """
     return render_template('home/index.html', title="Welcome")
-@home.route('/registration.html')
-def registration():
-    """
-    Render the registration form for doctors
-    """
-    return render_template('home/registration.html', title='Are you a doctor? Enter your details here')
 
-@home.route('/appointment.html')
-def appointment():
-    """
-    Render the appointment form for patients
-    """
-    return render_template('home/appointment.html', title="Schedule an appointment")
-
-@home.route('/login.html')
+@home.route('/login')
 def login():
     """
-    Render the login form
+    Render the login template
     """
-    return render_template('home/login.html', title="Login")
+    form = LoginForm()
+    return render_template('home/login.html', title="Login or Create An Account", form=form)
 
-@home.route('/landingpage.html')
-def landing():
+@home.route('/dashboard')
+@login_required
+def dashboard():
     """
-    Render the landing page
+    Render the user dashboard
     """
-    return render_template('home/landingpage.html')
-
+    return render_template('home/dashboard.html', title="Welcome to your homepage")

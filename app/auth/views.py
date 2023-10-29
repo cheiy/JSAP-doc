@@ -49,7 +49,7 @@ def login():
                 form.password.data):
             login_user(patient)
 
-            return redirect(url_for('home.patient'))
+            return redirect(url_for('home.dashboard'))
         else:
             flash('Invalid email or password')
 

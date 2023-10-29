@@ -13,14 +13,22 @@
                 <div class="content">
                     <div class="items">
                         <h3>Sign In</h3>
-                        <label for="Name">
-                            <input type="text" placeholder="Name" required>
+			<form method="POST" action="{{ url_for('auth.login') }}">
+                        <!--<label for="Name">
+                            <input type="text" placeholder="Email Address" required>
                         </label>
                         <label for="password">
                             <input type="password" minlength="8" name="password" id="password" required placeholder="Password">
-                        </label>
-                        <a href="landingpage.html"><button> Log In </button></a>
-                        <a href="registration.html"><p>Sign Up </p></a>
+			</label>-->
+			{{ form.email.label }}
+			{{ form.email() }}
+			{{ form.password.label }}
+			{{ form.password() }}
+			<p>
+			<input type="submit" value="Sign in">
+			</p>
+			</form>
+			<a href="{{ url_for('auth.signup') }}"><p>Sign Up </p></a>
                     </div>
                 </div>
             </div>
