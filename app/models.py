@@ -18,8 +18,11 @@ class Doctor(UserMixin, db.Model):
     first_name = db.Column(db.String(55), index=True)
     last_name = db.Column(db.String(55), index=True)
     phone_number = db.Column(db.Integer, index=True)
+    specialization = db.Column(db.String(200), index=True)
+    kmpdc_license_num = db.Column(db.String(100), index=True)
     email = db.Column(db.String(50), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128), nullable=False)
+    gender = db.Column(db.String(6), index=True, nullable=False)
     appointments = db.relationship('Appointment', backref='doctor',
                                    lazy='dynamic')
 
@@ -125,3 +128,31 @@ class Appointment(db.Model):
         Magic method to return appointment date
         """
         return '<Date: {}'.format(self.date)
+
+class User(UserMixin, db.Model):
+    """
+    Create a users' table
+    """
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30), index=True)
+    second_name = db.Column(db.String(30), index=True)
+    password = db.Column(db.String(128))
+    created_at = db.Column(db.DateTime, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+
+    def __init__(self, first_name, second_name, password, email):
+        self.first_name = first_name
+        self.second_name = second_name
+        self.password = generate_password_hash(password)
+        self.created_at = datetime.now()
+        self.email = email
+
+    def verify_password(self, password):
+        """
+        Check if password has matches actual password
+        """
+        return check_password_hash(self.password, password)
+
