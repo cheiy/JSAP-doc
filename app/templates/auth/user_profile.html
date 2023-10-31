@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>My Details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    {% import "bootstrap/utils.html" as utils %}
 </head>
 <body>
     <div class="container">
@@ -13,25 +12,25 @@
             <div class="overlay">
                 <div class="content">
                     <div class="items">
-                        <h3>Sign In</h3>
-			<form method="POST" action="{{ url_for('auth.login') }}">
-                        <!--<label for="Name">
-                            <input type="text" placeholder="Email Address" required>
-                        </label>
-                        <label for="password">
-                            <input type="password" minlength="8" name="password" id="password" required placeholder="Password">
-			</label>-->
-			{{ form.email.label }}
-			{{ form.email() }}
-			{{ form.password.label }}
-			{{ form.password() }}
-			<p>
-			<input type="submit" value="Login">
-			</p>
-			<br/>{{ utils.flashed_messages() }}
-			<br/>
-			</form>
-			<a href="{{ url_for('auth.signup') }}"><p>Sign Up </p></a>
+			<table>
+			  <thead>
+			    <tr>
+			      <th width="15%"> First Name</th>
+			      <th width="15%"> Second Name</th>
+			      <th width="15%"> Surname </th>
+			      <th width="15%"> Age </th>
+			    </tr>
+			  </thead>
+			  <tbody>
+		            <tr>
+			      <td> {{ patient.first_name }} </td>
+			      <td> {{ patient.second_name }} </td>
+			      <td> {{ patient.surname }} </td>
+			      <td> {{ patient.age }} </td>
+			    </tr>
+			  </tbody>
+			</table>
+			     
                     </div>
                 </div>
             </div>

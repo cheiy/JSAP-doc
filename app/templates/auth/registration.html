@@ -12,12 +12,51 @@
 	    {% import "bootstrap/wtf.html" as wtf %}
 	    {% import "bootstrap/utils.html" as utils %} 
 	    {{ utils.flashed_messages() }}
-	    {{ wtf.quick_form(form) }}
-            <!--<form action="">
+	    <!--{{ wtf.quick_form(form) }}-->
+            <form method="POST" action="/signup">
+		    {{ form.csrf_token }}
                 <h1 class="title">Registration form</h1>
                 <div class="input-box">
                     <div class="input-field">
-                        <input type="text" placeholder="First Name" required>
+			    {{ form.email(placeholder="Email Address") }}
+			    {{ form.email.label }}
+		    </div>
+                    <div class="input-field">
+			    {{ form.first_name(placeholder="First Name") }}
+			    {{ form.first_name.label }}
+		    </div>
+		</div>
+		<div class="input-box">
+                    <div class="input-field">
+			    {{ form.second_name(placeholder="Second Name") }}
+			    {{ form.second_name.label }}
+		    </div>
+                    <div class="input-field">
+			    {{ form.surname(placeholder="Surname") }}
+			    {{ form.surname.label }}
+		    </div>
+		</div>
+		 <div class="input-box">
+                    <div class="input-field">
+			    {{ form.age(placeholder="Age") }}
+			    {{ form.age.label }}
+		    </div>
+		 </div>
+		 <div class="input-box">
+                    <div class="input-field">
+			    {{ form.password(placeholder="Password") }}
+			    {{ form.password.label }}
+		    </div>
+                    <div class="input-field">
+			    {{ form.confirm_password(placeholder="Confirm Password") }}
+			    {{ form.confirm_password.label }}
+		    </div>
+		 </div>
+                <span class="gender-title">Gender</span>
+                    <div class="gender-category">
+			    {{ form.gender() }}
+		    </div>
+                    <!--   <input type="text" placeholder="First Name" required>
                     </div>
 		    <div class="input-field">
 			    <input type="text" placeholder="Second Name" required>
@@ -55,10 +94,10 @@
                     <label for="gender">female</label>
                     <input type="radio" name="gender" id="other">
                     <label for="gender">other</label>
-                </div>
+		</div>-->
                 <button class="btn" style="background-color: rgb(95, 88, 102); border-radius: 10px; width: fit-content; color: rgba(26, 23, 23, 0.904);padding: 4px;">submit</button>
-		</forms>-->
-            <p class="lnin" style="color: rgb(43, 8, 170); font-family: 'Courier New', Courier, monospace;">Already have an account? <a href="login.html">login</a></p>
+		</form>
+		<p class="lnin" style="color: rgb(43, 8, 170); font-family: 'Courier New', Courier, monospace;">Already have an account? <a href="{{ url_for('auth.login') }}">login</a></p>
         </div>
     </body>
 </html>

@@ -1,7 +1,7 @@
 # app/auth/forms.py
 
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField, ValidationError
+from wtforms import PasswordField, StringField, SubmitField, ValidationError, RadioField, IntegerField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 from ..models import Patient
@@ -15,8 +15,9 @@ class RegistrationForm(FlaskForm):
     first_name = StringField('First_Name', validators=[DataRequired()])
     second_name = StringField('Second_Name', validators=[DataRequired()])
     surname = StringField('Surname', validators=[DataRequired()])
-    gender = StringField('Gender', validators=[DataRequired()])
-    age = StringField('Age', validators=[DataRequired()])
+    gender = RadioField('Gender', choices=['Male', 'Female'],
+                        validators=[DataRequired()])
+    age = IntegerField('Age', validators=[DataRequired()])
     password = PasswordField('Password',
                              validators=[DataRequired(),
                                          EqualTo('confirm_password')]

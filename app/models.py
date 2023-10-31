@@ -3,22 +3,25 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager
+from datetime import datetime
 
-class Doctor(UserMixin, db.model):
+
+class Doctor(UserMixin, db.Model):
     """
     Create a Doctors table
     """
 
     __tablename__ = 'doctors'
 
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(55), index = True, unique = True)
-    first_name = db.Column(db.String(55), index = True)
-    last_name = db.Column(db.String(55), index = True)
-    phone_number = db.Column(db.Integer, index = True)
-    email = db.Column(db.String(50), index = True, unique = True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(55), index=True, unique=True)
+    first_name = db.Column(db.String(55), index=True)
+    last_name = db.Column(db.String(55), index=True)
+    phone_number = db.Column(db.Integer, index=True)
+    email = db.Column(db.String(50), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    appointments = db.relationship('Appointment', backref='doctor', lazy='dynamic')
+    appointments = db.relationship('Appointment', backref='doctor',
+                                   lazy='dynamic')
 
     @property
     def password(self):
@@ -43,29 +46,44 @@ class Doctor(UserMixin, db.model):
     def __repr__(self):
         return '<Doctor: {}>'.format(self.username)
 
+
 # User loader
 @login_manager.user_loader
 def load_user(user_id):
-    return Doctor.query.get(int(user_id))
+    return Patient.query.get(int(user_id))
 
-class Patient(db.Model):
+
+class Patient(UserMixin, db.Model):
     """
     Patients table
     """
 
     __tablename__ = 'patients'
 
-    id = db.Column(db.Integer, primary_key = True)
-    first_name = db.Column(db.String(60), index = True)
-    second_name = db.Column(db.String(60), index = True)
-    surname = db.Column(db.String(60), index = True)
-    gender = db.Column(db.String(6), index = True)
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(60), index=True)
+    second_name = db.Column(db.String(60), index=True)
+    surname = db.Column(db.String(60), index=True)
+    gender = db.Column(db.String(6), index=True)
     age = db.Column(db.Integer)
-    password_hash = db.Column(db.String(128))
-    email = db.Column(db.String(60), index = True, unique = True)
-    appointments = db.relationship('Appointment', backref='patient', lazy='dynamic')
+    password = db.Column(db.String(128))
+    created_at = db.Column(db.DateTime, nullable=False)
+    email = db.Column(db.String(60), index=True, unique=True, nullable=False)
+    appointments = db.relationship('Appointment', backref='patient',
+                                   lazy='dynamic')
 
-    @property
+    def __init__(self, first_name, second_name, surname, gender, age,
+                 password, email):
+        self.first_name = first_name
+        self.second_name = second_name
+        self.surname = surname
+        self.gender = gender
+        self.age = age
+        self.password = generate_password_hash(password)
+        self.created_at = datetime.now()
+        self.email = email
+
+    '''@property
     def password(self):
         """
         Prevent password from being accessed
@@ -74,10 +92,14 @@ class Patient(db.Model):
 
     @password.setter
     def password(self, password):
+        self.password = generate_password_hash(password)
+    '''
+    
+    def verify_password(self, password):
         """
-        Set password to a hashed value
+        Check if password has matches actual password
         """
-        self.password_hash = generate_password_hash(password)
+        return check_password_hash(self.password, password)
 
     def __repr__(self):
         """
@@ -93,8 +115,8 @@ class Appointment(db.Model):
 
     __tablename__ = 'appointments'
 
-    id = db.Column(db.Integer, primary_key = True)
-    date = db.Column(db.String(60), unique = True)
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(60), unique=True)
     doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'))
     patient_id = db.Column(db.Integer, db.ForeignKey('patients.id'))
 

@@ -15,10 +15,11 @@
                 <nav>
                     <ul>
                         <a href="../index.html"><li>Home</li></a>
-                        <a href="./landingpage.html"><li>Find Doctors</li></a>
-                        <a href="./appointment.html"><li>Appointment</li></a>
-                        <a href="./results.html"><li>Profile </li></a>
-                        <a href="./login.html"><li>Blogs</li></a>
+                        <a href="./landingpage.html"><li>Lookup Doctors</li></a>
+                        <a href="./appointment.html"><li>Schedule an Appointment</li></a>
+			<a href="{{ url_for('auth.profile') }}"><li>My Profile</li></a>
+                        <a href="./myappointments.html"><li>My Appointments</li></a>
+			<a href="{{ url_for('auth.logout') }}"><li>Logout</li></a>
                     </ul>
                 </nav>
                 <div class="box">

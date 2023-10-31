@@ -13,13 +13,17 @@
                 <div class="content">
                     <div class="items">
                         <h3>Sign In</h3>
+			<form method="POST" action="/login">
                         <label for="Name">
                             <input type="text" placeholder="Name" required>
                         </label>
                         <label for="password">
                             <input type="password" minlength="8" name="password" id="password" required placeholder="Password">
                         </label>
-                        <a href="landingpage.html"><button> Log In </button></a>
+			<p>
+			<input type="submit" value="Sign In">
+			</p>
+			</form>
                         <a href="registration.html"><p>Sign Up </p></a>
                     </div>
                 </div>

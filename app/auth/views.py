@@ -43,6 +43,14 @@ def login():
     Patient log in
     """
     form = LoginForm()
+    patient = Patient.query.filter_by(email=form.email.data).first()
+    if patient is not None and patient.verify_password(form.password.data):
+        login_user(patient)
+
+        return redirect(url_for('home.dashboard'))
+    else:
+        flash("Invalid email or password")
+    """
     if form.validate_on_submit():
         patient = Patient.query.filter_by(email=form.email.data).first()
         if patient is not None and patient.verify_password(
@@ -52,5 +60,27 @@ def login():
             return redirect(url_for('home.dashboard'))
         else:
             flash('Invalid email or password')
+    """
+    return render_template('home/login.html', form=form, title='Login')
 
-    return render_template('auth/login.html', form=form, title='Login')
+@login_required
+@auth.route('/myprofile', methods=['GET', 'POST'])
+def profile():
+    """
+    Loads the logged in user_profile
+    """
+    patient = Patient.query.filter_by(id="1").first()
+    
+    return render_template('auth/user_profile.html', patient=patient, title='My Details')
+
+@login_required
+@auth.route('/logout')
+def logout():
+    """
+    Logout route
+    """
+    logout_user()
+    flash("You have logged out successfully")
+
+    # Return the user to the login page
+    return render_template('home/loggedout.html', title="Logged out")
