@@ -45,10 +45,11 @@ def add_doctor():
     db.session.commit()
     flash('Doctor added successfully')
     """
+    print(form.errors)
     if form.validate_on_submit():
         doctor = Doctor(email=form.email.data,
                         first_name=form.first_name.data,
-                        last_name=form.second_name.data,
+                        last_name=form.last_name.data,
                         phone_number=form.phone_number.data,
                         kmpdc_license_num=form.kmpdc_license_num.data,
                         specialization=form.specialization.data,
@@ -61,6 +62,14 @@ def add_doctor():
         flash('Doctor added successfully')
     else:
         flash("Unable to add doctor")
+        flash("Email: {}".format(form.email.data))
+        flash("First Name: {}".format(form.first_name.data))
+        flash("Phone Number: {}".format(form.phone_number.data))
+        flash("Last Name: {}".format(form.last_name.data))
+        flash("KMPDC: {}".format(form.kmpdc_license_num.data))
+        flash("Specialization: {}".format(form.specialization.data))
+        flash("Gender: {}".format(form.gender.data))
+        flash("Password: {}".format(form.password.data))
     return render_template('admin/add_doctor.html', form=form, title='Add Doctors')
 
 @admin.route('/admin_dashboard', methods=['GET', 'POST'])

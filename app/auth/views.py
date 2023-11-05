@@ -6,7 +6,7 @@ from flask_login import login_required, login_user, logout_user
 from . import auth
 from . forms import RegistrationForm, LoginForm
 from .. import db
-from .. models import Patient
+from .. models import Patient, Doctor, Appointment
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -84,3 +84,30 @@ def logout():
 
     # Return the user to the login page
     return render_template('home/loggedout.html', title="Logged out")
+
+@login_required
+@auth.route('/search_doctors', methods=['GET', 'POST'])
+def search_doctors():
+    """
+    List available doctors
+    """
+    doctors = Doctor.query.all()
+    return render_template('auth/doctors_list.html', doctors=doctors, title="Our doctors")
+
+@login_required
+@auth.route('/schedule_appointment/<int:id>', methods=['GET', 'POST'])
+def schedule_appointment(id):
+    """
+    Schedule Appointment
+    """
+    doctor = Doctor.query.get(id)
+    return render_template('auth/schedule_app.html', doctor=doctor, title="Schedule")
+
+@login_required
+@auth.route('/user_appointments', methods=['GET', 'POST'])
+def user_appointments():
+    """
+    Show my appointments
+    """
+    appointments = Appointment.query.all()
+    return render_template('auth/my_appointments.html', appointments=appointments, title="My Appointments")

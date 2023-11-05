@@ -14,7 +14,6 @@ class Doctor(UserMixin, db.Model):
     __tablename__ = 'doctors'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(55), index=True, unique=True)
     first_name = db.Column(db.String(55), index=True)
     last_name = db.Column(db.String(55), index=True)
     phone_number = db.Column(db.Integer, index=True)
