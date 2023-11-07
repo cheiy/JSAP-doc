@@ -20,7 +20,7 @@ class Doctor(UserMixin, db.Model):
     specialization = db.Column(db.String(200), index=True)
     kmpdc_license_num = db.Column(db.String(100), index=True)
     email = db.Column(db.String(50), index=True, unique=True)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(506), nullable=False)
     gender = db.Column(db.String(6), index=True, nullable=False)
     appointments = db.relationship('Appointment', backref='doctor',
                                    lazy='dynamic')
@@ -68,7 +68,7 @@ class Patient(UserMixin, db.Model):
     surname = db.Column(db.String(60), index=True)
     gender = db.Column(db.String(6), index=True)
     age = db.Column(db.Integer)
-    password = db.Column(db.String(128))
+    password = db.Column(db.String(506))
     created_at = db.Column(db.DateTime, nullable=False)
     email = db.Column(db.String(60), index=True, unique=True, nullable=False)
     appointments = db.relationship('Appointment', backref='patient',
@@ -138,7 +138,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), index=True)
     second_name = db.Column(db.String(30), index=True)
-    password = db.Column(db.String(128))
+    password = db.Column(db.String(506))
     created_at = db.Column(db.DateTime, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
 
