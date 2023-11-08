@@ -1,5 +1,6 @@
 <html>
 <body>
+	<a href="{{ url_for('home.dashboard') }}">Home</a>
  {% if doctors %}
    {% for doctor in doctors %}
    <li> Dr. {{ doctor.first_name }} {{ doctor.last_name }} {{ doctor.specialization }} <a href="{{ url_for('auth.schedule_appointment', id=doctor.id) }}">Book appointment</a></li>

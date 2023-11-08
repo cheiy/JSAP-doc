@@ -1,0 +1,8 @@
+<html>
+<body>
+	<a href="{{ url_for('home.dashboard') }}">Home</a>
+	{% if not appointments %}
+	  <p> You have no scheduled appointments </p>
+	{% endif %}
+</body>
+</html>
