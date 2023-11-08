@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Appointments</title>
+</head>
+<body>
+    <h1 style="text-align: center;">My Appointments</h1>
+    
+    <table border="1" style="width: 100%;">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Disease</th>
+            <th>Doctor</th>
+            <th>Specialty</th>
+            <th>Date & Time</th>
+        </tr>
+        <!-- Loop through your appointments data and populate the table -->
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.name }}</td>
+            <td>{{ appointment.age }}</td>
+            <td>{{ appointment.disease }}</td>
+            <td>{{ appointment.doctor }}</td>
+            <td>{{ appointment.specialty }}</td>
+            <td>{{ appointment.datetime }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Add a link to navigate back to the booking appointments page -->
+    <a href="/bookappointments">Book Another Appointment</a>
+</body>
+</html>
