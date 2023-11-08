@@ -1,9 +1,13 @@
 <html>
 <body>
+	<a href="{{ url_for('home.dashboard')}}">Home</a>
 	<p> Appointment with Dr. {{ doctor.first_name }} {{ doctor.last_name }} </p>
+	<form action="appointment">
 	<label for="appointment">Appointment date:</label>
 	<input type="date" id="appointment_date" name="Appointment Date">
 	<input type="time" id="appointment_time" name="Time">
+	<button>Submit</button>
+	</form>
    
 </body>
 </html>
