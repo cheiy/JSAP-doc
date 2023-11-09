@@ -19,8 +19,6 @@ def admin_login():
     if user is not None and user.verify_password(form.password.data):
         login_user(user)
         return redirect(url_for('admin.dashboard'))
-    else:
-        flash("Invalid username or password")
     return render_template('admin/admin_login.html', form=form, title='Login')
 
 
@@ -60,6 +58,8 @@ def add_doctor():
         db.session.add(doctor)
         db.session.commit()
         flash('Doctor added successfully')
+        return redirect(url_for('admin.dashboard'))
+    """
     else:
         flash("Unable to add doctor")
         flash("Email: {}".format(form.email.data))
@@ -70,6 +70,7 @@ def add_doctor():
         flash("Specialization: {}".format(form.specialization.data))
         flash("Gender: {}".format(form.gender.data))
         flash("Password: {}".format(form.password.data))
+    """
     return render_template('admin/add_doctor.html', form=form, title='Add Doctors')
 
 @admin.route('/admin_dashboard', methods=['GET', 'POST'])
@@ -77,5 +78,5 @@ def dashboard():
     """
     Admin's Dashboard
     """
-
-    return render_template('admin/admin_dashboard.html', title="Admin Dashboard")
+    doctors = Doctor.query.all()
+    return render_template('admin/admin_dashboard.html', doctors=doctors, title="Admin Dashboard")

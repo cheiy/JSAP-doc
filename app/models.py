@@ -46,7 +46,7 @@ class Doctor(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<Doctor: {}>'.format(self.username)
+        return '<Doctor: {}>'.format(self.first_name)
 
 
 # User loader

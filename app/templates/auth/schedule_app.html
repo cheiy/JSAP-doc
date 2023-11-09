@@ -2,12 +2,11 @@
 <body>
 	<a href="{{ url_for('home.dashboard')}}">Home</a>
 	<p> Appointment with Dr. {{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.specialization }} </p>
-	<form action="appointment">
+	<form method="POST" action="{{ url_for('auth.schedule_appointment', id=current_user.id) }}">
 		{{ form.csrf_token }}
 
-		<label for="appointment">Appointment date:</label><br />
-		<input type="date" id="appointment_date" name="Appointment Date">
-		<input type="time" id="appointment_time" name="Time">
+		<label for="appointment">Appointment date and time:</label><br />
+		{{ form.date }}
 		<button>Submit</button>
 	</form>
    

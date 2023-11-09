@@ -2,7 +2,12 @@
 <html>
 	<body>
 		<a href="{{ url_for('admin.add_doctor') }}"> Add doctors here </a>
-		<a href="{{ url_for('admin.logout') }}">Logout</a>
-		<p> List Appointments here </p>
+		<a href="{{ url_for('admin.admin_login') }}">Logout</a>
+		<p> {% if doctors %}
+			<h1> Current Signed Up Doctors </h1>
+			{% for doctor in doctors %}
+			<li> {{ doctor.first_name }} {{doctor.last_name}} - {{doctor.specialization}} </li>
+			{% endfor %}
+		    {% endif %}
 	</body>
 </html>

@@ -1,10 +1,10 @@
 # app/auth/views.py
 
 from flask import flash, redirect, render_template, url_for
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from . import auth
-from . forms import RegistrationForm, LoginForm
+from . forms import RegistrationForm, LoginForm, AppointmentForm
 from .. import db
 from .. models import Patient, Doctor, Appointment
 
@@ -29,9 +29,11 @@ def signup():
         db.session.add(patient)
         db.session.commit()
         flash('You have registered successfully')
+        patient = Patient.query.filter_by(email=form.email.data).first()
+        login_user(patient)
 
         # Redirect patient to the login page
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('home.dashboard'))
 
     # load the registration page
     return render_template('auth/registration.html', form=form, title='SignUp')
@@ -69,7 +71,7 @@ def profile():
     """
     Loads the logged in user_profile
     """
-    patient = Patient.query.filter_by(id="1").first()
+    patient = Patient.query.filter_by(id=current_user.id).first()
     
     return render_template('auth/user_profile.html', patient=patient, title='My Details')
 
@@ -100,9 +102,19 @@ def schedule_appointment(id):
     """
     Schedule Appointment
     """
+    form = AppointmentForm()
     doctor = Doctor.query.get(id)
-    patient = Patient.query.get(current_user.id)
-    return render_template('auth/schedule_app.html', doctor=doctor, title="Schedule")
+    if form.validate_on_submit():
+        appointment = Appointment(date=form.date.data,
+                                  doctor_id = id,
+                                  patient_id = current_user.id
+                                  )
+                    
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect(url_for('auth.user_appointments'))
+
+    return render_template('auth/schedule_app.html', form=form, doctor=doctor, title="Schedule")
 
 @login_required
 @auth.route('/user_appointments', methods=['GET', 'POST'])
@@ -110,5 +122,6 @@ def user_appointments():
     """
     Show my appointments
     """
-    appointments = Appointment.query.all()
+    appointments = Appointment.query.filter_by(patient_id=current_user.id)
     return render_template('auth/my_appointments.html', appointments=appointments, title="My Appointments")
+

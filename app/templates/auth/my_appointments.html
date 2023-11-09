@@ -1,8 +1,12 @@
 <html>
 <body>
+	{% import "bootstrap/utils.html" as utils %}
 	<a href="{{ url_for('home.dashboard') }}">Home</a>
-	{% if not appointments %}
-	  <p> You have no scheduled appointments </p>
+	{% if appointments %}
+		<p> Appointment Dates </p>
+		{% for appointment in appointments %}
+		<li> {{ appointment.date }} with Dr. {{appointment.doctor.first_name }} {{ appointment.doctor.last_name }} </li>
+		{% endfor %}
 	{% endif %}
 </body>
 </html>
