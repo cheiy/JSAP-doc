@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='landingpage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landingpage.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <title>Doctors</title>
 </head>
-<body style="text-align: center;">
+<body>
     <div class="container">
-        <header style="text-align: center;">
+        <header>
             <div class="banner">
-                <nav style="display: flex; padding: 10px; justify-content: space-evenly;">
-                    <ul style="text-align: centre; display: flex; text-decoration: none; list-style: none; font-size: 20px; justify-content: space-evenly; padding: 10px;">
-                        <a href="../index.html"><li style="padding: 25px;">Home</li></a>
-			<a href="{{ url_for('auth.search_doctors') }}"><li style="padding: 25px;">Lookup Doctors</li></a>
-			<a href="{{ url_for('auth.profile') }}"><li style="padding: 25px;">My Profile</li></a>
-			<a href="{{ url_for('auth.user_appointments') }}"><li style="padding: 25px;">My Appointments</li></a>
-			<a href="{{ url_for('auth.logout') }}"><li style="padding: 25px;"[[I>Logout</li></a>
+                <nav>
+                    <ul>
+			<a href="{{ url_for('auth.search_doctors') }}"><li>Lookup Doctors</li></a>
+			<a href="{{ url_for('auth.profile') }}"><li>My Profile</li></a>
+			<a href="{{ url_for('auth.user_appointments') }}"><li>My Appointments</li></a>
+			<a href="{{ url_for('auth.logout') }}"><li>Logout</li></a>
                     </ul>
                 </nav>
                 <div class="box">
                     <img src="https://images.pexels.com/photos/6941884/pexels-photo-6941884.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                     <div class="overlay">
                         <div class="content">
-                            <h1>Find the Best and most qualified doctor for you</h1>
+				<h1>Hi {{ current_user.first_name }}!, Find the Best and most qualified doctor for you</h1>
                         </div>
                     </div>
                 </div>
@@ -34,87 +33,87 @@
         </header> 
         <section class="categories">
             <h2>Categories</h2>
-            <div style="margin-top: 10px">
-                <div class="med-icons" style="margin-top: 10px;">
+            <div>
+                <div class="med-icons">
                     <span>
-                        <i class="fa-solid fa-stethoscope fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-stethoscope fa-2xl"></i>
                         General
                     </span>
                     <span>
-                        <i class="fa-solid fa-heart-pulse fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-heart-pulse fa-2xl"></i>
                         Cardiologist
                     </span>
                     <span>
-                        <i class="fa-solid fa-tooth fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-tooth fa-2xl"></i>
                         Dentist
                     </span>
                     <span>
-                        <i class="fa-solid fa-eye fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-eye fa-2xl"></i>
                         Optician
                     </span>
                     <span>
-                        <i class="fa-solid fa-brain fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-brain fa-2xl"></i>
                         Neurologist
                     </span>
                     <span>
-                        <i class="fa-solid fa-lungs fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-lungs fa-2xl"></i>
                         pulmonologist
                     </span>
                     <span>
-                        <i class="fa-solid fa-venus-mars fa-2xl" style="padding-left: 20px;"></i>
+                        <i class="fa-solid fa-venus-mars fa-2xl"></i>
                         obstetricians
                     </span>
                     <span>
-                        <i class="fa-solid fa-angles-right" style="padding-left: 20px;"></i>More
+                        <i class="fa-solid fa-angles-right"></i>More
 
                     </span>
                 </div>
             </div>
         </section>
 
-        <section class="doctors" style="display: flex;">
-            <div class="card" style="display: block;">
-                <img src="https://images.pexels.com/photos/3714743/pexels-photo-3714743.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" width="100">
+        <section class="doctors">
+            <div class="card">
+                <img src="https://images.pexels.com/photos/3714743/pexels-photo-3714743.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                 <div class="description">
                     <span class="name">Dr Anita Nafula</span>
                     <span class="job">Cardiologist</span>
-                    <a href="appointment.html"><button>Appointment</button></a>
+                    <a href="{{ url_for('auth.schedule_appointment', id=8) }}"><button>Appointment</button></a>
                 </div>
             </div>
-            <div class="card" style="display: block;">
-                <img src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" width="100">
+            <div class="card">
+                <img src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                 <div class="description">
                     <span class="name">Dr Fabian Juma</span>
                     <span class="job">Paedaetrician</span>
-                    <a href="appointment.html"><button>Appointment</button></a>
+                    <a href="{{ url_for('auth.schedule_appointment', id=9) }}"><button>Appointment</button></a>
                 </div>
             </div>
-            <div class="card" style="display: block;">
-                <img src="https://images.pexels.com/photos/12495583/pexels-photo-12495583.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" width="100">
+            <div class="card">
+                <img src="https://images.pexels.com/photos/12495583/pexels-photo-12495583.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                 <div class="description">
                     <span class="name">Dr Victoria Zuhura</span>
-                    <span class="job">Neurologist</span> 
-                    <a href="appointment.html"><button>Appointment</button></a>
+                    <span class="job">Neurologist</span>
+                    <a href="{{ url_for('auth.schedule_appointment', id=10) }}"><button>Appointment</button></a>
                 </div>
             </div>
-            <div class="card" style="display: block;">
-                <img src="https://images.pexels.com/photos/6098057/pexels-photo-6098057.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" width="100">
+            <div class="card">
+                <img src="https://images.pexels.com/photos/6098057/pexels-photo-6098057.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                 <div class="description">
                     <span class="name">Dr Natasha Ghelani</span>
                     <span class="job">General</span>
-                    <a href="appointment.html"><button>Appointment</button></a>
+                    <a href="{{ url_for('auth.schedule_appointment', id=11) }}"><button>Appointment</button></a>
                 </div>
             </div>
-            <div class="card" style="display: block;">
-                <img src="https://images.pexels.com/photos/5452291/pexels-photo-5452291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" width="100">
+            <div class="card">
+                <img src="https://images.pexels.com/photos/5452291/pexels-photo-5452291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
                 <div class="description">
                     <span class="name">Dr Daniel Nzomo</span>
                     <span class="job">endocrinologist</span>
-                    <a href="appointment.html"><button>Appointment</button></a>
+                    <a href="{{ url_for('auth.schedule_appointment', id=12) }}"><button>Appointment</button></a>
                 </div>
             </div>
         </section>  
     </div>
 </body>
 </html>
-
+<!DOCTYPE html>

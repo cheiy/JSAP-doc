@@ -1,76 +1,92 @@
-*{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body{
-    display: flex;
-    justify-content:  center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('doctor.png');
-    background-size: cover;
-    background-position: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: fit-content;
 }
-.name {
-    color: red;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
+.container{
+    padding: 1px;
+    background-color: rgba(1, 1, 1, .7);   
+    width: 100vw; 
 }
-.doc{
-    color: blue;
-}
-.wrapper{
-    width: 750px;
-    background: url('Medical-Doctors.jpg');
-    border-radius: 20px;
-    color: aliceblue;
-    padding: 40px 35px 55px;
-    border: rgb(6, 10, 66);
-}
-.title{
-    color: grey;
-}
-.input-box {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background: transparent;
-}
-.input-field {
-    position: relative;
-    width: 48%;
-    background: transparent;
-    margin: 13px 0;
-}
-.input-field input {
+.box{
+    height: 100%;
     width: 100%;
-    height: 40px;
-    background: transparent;
-    border: 2px solid rgb(194, 216, 231);
-    outline: none;
-    font-size: 16px;
-    color: azure;
-    border-radius: 6px;
-    padding: 10px;
 }
-.input-field input::placeholder {
-    color: black;
-    font-weight: 4px;
+.overlay{
+    background-color: rgba(1, 1, 1, .7);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    color: white;
+    position: fixed;
+    z-index: 2;
 }
-.gender-title {
-    color: black;
-    margin-top: 20px;
-    padding-top: 20px;
+.overlay2{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    z-index: 3;
 }
-.gender-category {
-    color: black;
-    margin: 10px;
-    padding: 10px;
-}
-.btn:hover{
-    background-color: aquamarine;
+.box img{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    object-fit: cover;
+    position: fixed; 
+    z-index: 1;
 }
 
+.content{
+    width: 100%;
+    max-width: 500px;
+    margin: 0, auto;
+    text-align: center;
+    background-color: rgba(255,255, 255, .3);
+    display: flex;
+    padding: 2em;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
+button{
+    margin-top: 2em;
+    padding: 10px 20px;
+    background-color: rgb(1, 1, 40);
+    color: white;
+    height: 35px;
+    width: 80%;
+    border-radius: 5px;
+    font-size: 1em;
+}
+button:hover{
+    background-color: rgba(1, 1, 40, .3);
+    color: white;
+    font-weight: 700;
+}
+label{
+    display: block;
+    margin: 1.5em;
+    text-align: left;
+}
+input{
+    background-color: rgba(1, 1, 1, .7);
+    height: 35px;
+    width: 100%;
+    margin: 5px;
+    color: white;
+    font-size: 1em;
+}
+.radio input{
+    height: 15px;
+    width: 15px;
+    vertical-align: middle;
+}
+form{
+    width: 100%;
+}

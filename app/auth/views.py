@@ -101,6 +101,7 @@ def schedule_appointment(id):
     Schedule Appointment
     """
     doctor = Doctor.query.get(id)
+    patient = Patient.query.get(current_user.id)
     return render_template('auth/schedule_app.html', doctor=doctor, title="Schedule")
 
 @login_required
