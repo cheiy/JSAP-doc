@@ -6,7 +6,7 @@ from flask_login import login_required, login_user, logout_user
 from . import auth
 from . forms import RegistrationForm, LoginForm
 from .. import db
-from .. models import Patient, Doctor, Appointment
+from .. models import User, Doctor, Appointment
 
 
 @auth.route('/signup', methods=['GET', 'POST'])

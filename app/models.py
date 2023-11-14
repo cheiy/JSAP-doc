@@ -52,15 +52,15 @@ class Doctor(UserMixin, db.Model):
 # User loader
 @login_manager.user_loader
 def load_user(user_id):
-    return Patient.query.get(int(user_id))
+    return User.query.get(int(user_id))
 
 
-class Patient(UserMixin, db.Model):
+class User(UserMixin, db.Model):
     """
-    Patients table
+    Users table
     """
 
-    __tablename__ = 'patients'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(60), index=True)
@@ -73,9 +73,13 @@ class Patient(UserMixin, db.Model):
     email = db.Column(db.String(60), index=True, unique=True, nullable=False)
     appointments = db.relationship('Appointment', backref='patient',
                                    lazy='dynamic')
+    is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    is_confirmed = db.Column(db.Boolean, nullable=False, default=False)
+    confirmed_on = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, first_name, second_name, surname, gender, age,
-                 password, email):
+                 password, email, is_admin=False, is_confirmed=False,
+                 confirmed_on=None):
         self.first_name = first_name
         self.second_name = second_name
         self.surname = surname
@@ -84,6 +88,9 @@ class Patient(UserMixin, db.Model):
         self.password = generate_password_hash(password)
         self.created_at = datetime.now()
         self.email = email
+        self.is_admin = is_admin
+        self.is_confirmed = is_confirmed
+        self.confirmed_on = confirmed_on
 
     '''@property
     def password(self):
@@ -107,7 +114,7 @@ class Patient(UserMixin, db.Model):
         """
         Magic method to return patient username
         """
-        return '<Patient: {}>'.format(self.username)
+        return '<Patient: {}>'.format(self.email)
 
 
 class Appointment(db.Model):
@@ -127,31 +134,3 @@ class Appointment(db.Model):
         Magic method to return appointment date
         """
         return '<Date: {}'.format(self.date)
-
-class User(UserMixin, db.Model):
-    """
-    Create a users' table
-    """
-
-    __tablename__ = 'users'
-
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(30), index=True)
-    second_name = db.Column(db.String(30), index=True)
-    password = db.Column(db.String(128))
-    created_at = db.Column(db.DateTime, nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-
-    def __init__(self, first_name, second_name, password, email):
-        self.first_name = first_name
-        self.second_name = second_name
-        self.password = generate_password_hash(password)
-        self.created_at = datetime.now()
-        self.email = email
-
-    def verify_password(self, password):
-        """
-        Check if password has matches actual password
-        """
-        return check_password_hash(self.password, password)
-
